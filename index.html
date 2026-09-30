@@ -1,12 +1,581 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mathiyanbu R P — ECE Student, Embedded Systems, AI and UAV Systems">
+<title>Mathiyanbu R P | Portfolio</title>
 
+<style>
+:root{
+    --bg:#050505;
+    --bg2:#0b0b0b;
+    --card:#101010;
+    --line:#242424;
+    --text:#f5f5f5;
+    --muted:#999;
+    --accent:#b8ff3d;
+    --accent2:#83c91f;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(1150px,90%);margin:auto}
+
+/* NAV */
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(5,5,5,.82);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+.nav-inner{
+    height:74px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.logo{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+.logo span{color:var(--accent)}
+.nav-links{
+    display:flex;
+    gap:28px;
+    list-style:none;
+}
+.nav-links a{
+    color:#aaa;
+    font-size:14px;
+    transition:.25s;
+}
+.nav-links a:hover{color:var(--accent)}
+.menu{display:none;color:var(--accent);font-size:25px;cursor:pointer}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:120px 0 80px;
+    position:relative;
+    overflow:hidden;
+}
+.hero:before{
+    content:"";
+    position:absolute;
+    width:500px;height:500px;
+    right:-180px;top:100px;
+    background:var(--accent);
+    filter:blur(180px);
+    opacity:.07;
+}
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:70px;
+    align-items:center;
+}
+.kicker{
+    color:var(--accent);
+    font-size:13px;
+    letter-spacing:4px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+h1{
+    font-size:clamp(52px,8vw,96px);
+    line-height:.95;
+    letter-spacing:-4px;
+    margin-bottom:25px;
+}
+.hero h1 span{color:var(--accent)}
+.hero-title{
+    font-size:clamp(18px,2vw,25px);
+    color:#c9c9c9;
+    margin-bottom:22px;
+}
+.hero-description{
+    max-width:680px;
+    color:var(--muted);
+    font-size:16px;
+}
+.hero-buttons{
+    display:flex;
+    gap:14px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+.btn{
+    padding:13px 22px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    font-size:14px;
+    font-weight:700;
+    transition:.25s;
+}
+.btn-primary{
+    background:var(--accent);
+    color:#050505;
+    border-color:var(--accent);
+}
+.btn:hover{transform:translateY(-3px)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+
+.profile-box{
+    background:linear-gradient(145deg,#151515,#090909);
+    border:1px solid var(--line);
+    padding:25px;
+    border-radius:14px;
+    position:relative;
+}
+.profile-circle{
+    width:210px;height:210px;
+    margin:auto;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#111;
+    border:1px solid #333;
+    box-shadow:0 0 0 10px #0b0b0b,0 0 60px rgba(184,255,61,.12);
+    font-size:70px;
+    font-weight:900;
+    color:var(--accent);
+}
+.profile-caption{
+    text-align:center;
+    margin-top:25px;
+    color:#aaa;
+    font-size:13px;
+}
+
+/* SECTIONS */
+section{padding:110px 0}
+.section-label{
+    color:var(--accent);
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+.section-title{
+    font-size:clamp(35px,5vw,58px);
+    letter-spacing:-2px;
+    margin-bottom:45px;
+}
+.section-title span{color:var(--accent)}
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+}
+.about-text{color:#aaa;font-size:17px}
+.about-text p+p{margin-top:18px}
+.info-list{display:grid;gap:14px}
+.info{
+    padding:18px 20px;
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:7px;
+}
+.info small{color:var(--accent);display:block;margin-bottom:4px}
+.info strong{font-size:15px}
+
+/* SKILLS */
+.skills{
+    background:#080808;
+    border-top:1px solid #151515;
+    border-bottom:1px solid #151515;
+}
+.skill-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+.skill{
+    padding:24px;
+    background:#0e0e0e;
+    border:1px solid var(--line);
+    transition:.3s;
+}
+.skill:hover{border-color:#4c6825;transform:translateY(-4px)}
+.skill h3{font-size:17px;margin-bottom:10px}
+.skill p{font-size:14px;color:#888}
+
+/* EXPERIENCE */
+.timeline{
+    position:relative;
+    max-width:900px;
+}
+.timeline:before{
+    content:"";
+    position:absolute;
+    left:8px;top:0;bottom:0;
+    width:1px;background:#303030;
+}
+.experience{
+    position:relative;
+    padding-left:45px;
+    margin-bottom:45px;
+}
+.experience:before{
+    content:"";
+    position:absolute;
+    left:2px;top:8px;
+    width:13px;height:13px;
+    border:2px solid var(--accent);
+    border-radius:50%;
+    background:var(--bg);
+}
+.date{
+    color:var(--accent);
+    font-size:12px;
+    letter-spacing:1px;
+    font-weight:700;
+}
+.experience h3{font-size:22px;margin:5px 0}
+.company{color:#ddd;font-weight:700}
+.experience ul{margin-top:12px;padding-left:18px;color:#888}
+.experience li{margin:5px 0}
+
+/* PROJECTS */
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+.project{
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:30px;
+    min-height:220px;
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+}
+.project:after{
+    content:"";
+    position:absolute;
+    width:100px;height:100px;
+    right:-45px;bottom:-45px;
+    background:var(--accent);
+    filter:blur(60px);
+    opacity:0;
+    transition:.3s;
+}
+.project:hover{
+    transform:translateY(-5px);
+    border-color:#435c24;
+}
+.project:hover:after{opacity:.15}
+.project-number{color:var(--accent);font-size:12px;font-weight:800}
+.project h3{font-size:25px;margin:10px 0}
+.project p{color:#888;font-size:14px}
+
+/* CONTACT */
+.contact{
+    text-align:center;
+    background:#080808;
+    border-top:1px solid #151515;
+}
+.contact-text{color:#888;margin-bottom:30px}
+.contact-links{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+.contact-links a{
+    padding:12px 18px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    color:#ccc;
+    font-size:14px;
+}
+.contact-links a:hover{border-color:var(--accent);color:var(--accent)}
+
+footer{
+    padding:25px;
+    text-align:center;
+    color:#555;
+    font-size:12px;
+    border-top:1px solid #151515;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:74px;left:0;
+        width:100%;
+        background:#080808;
+        flex-direction:column;
+        padding:20px 5%;
+        border-bottom:1px solid var(--line);
+    }
+    .nav-links.active{display:flex}
+    .menu{display:block}
+    .hero-grid,.about-grid{grid-template-columns:1fr}
+    .hero{padding-top:130px}
+    h1{letter-spacing:-3px}
+    .profile-box{max-width:350px;margin:auto}
+    .skill-grid{grid-template-columns:1fr 1fr}
+    .project-grid{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+    .skill-grid{grid-template-columns:1fr}
+    section{padding:80px 0}
+}
+</style>
 </head>
+
 <body>
-    <h1>git sec</h1>
+
+<nav>
+    <div class="container nav-inner">
+        <a href="#home" class="logo">MATHI<span>.</span></a>
+        <div class="menu" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="container hero-grid">
+        <div>
+            <div class="kicker">ECE STUDENT · BUILDER · TECH ENTHUSIAST</div>
+            <h1>MATHIYANBU <span>  R P</span></h1>
+            <div class="hero-title">Embedded Systems · AI · UAV Systems</div>
+            <p class="hero-description">
+                Electronics & Communication Engineering student with hands-on
+                experience across embedded systems, UAVs, AI, PCB design and
+                computer vision. Interested in aerospace, robotics, embedded
+                systems and defense technologies.
+            </p>
+            <div class="hero-buttons">
+                <a class="btn btn-primary" href="#projects">View Projects</a>
+                <a class="btn btn-secondary" href="#contact">Let's Connect</a>
+            </div>
+        </div>
+
+        <div class="profile-box">
+            <div class="profile-circle">MR</div>
+            <p class="profile-caption">Electronics · Embedded · AI · UAV</p>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+        <div class="section-label">01 — About</div>
+        <h2 class="section-title">Building with <span>hardware & intelligence.</span></h2>
+
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    Passionate Electronics & Communication Engineering student
+                    with experience in Embedded Systems, UAVs, AI, PCB Design,
+                    and Computer Vision.
+                </p>
+                <p>
+                    I have startup experience in hardware engineering and
+                    technical leadership through RedSky Drones, with interests
+                    spanning aerospace, robotics, embedded systems and defense
+                    technologies.
+                </p>
+            </div>
+
+            <div class="info-list">
+                <div class="info">
+                    <small>EDUCATION</small>
+                    <strong>B.E. Electronics & Communication Engineering</strong>
+                    <div>Sri Sairam Engineering College · 2024–2028 · CGPA 8.59</div>
+                </div>
+                <div class="info">
+                    <small>LOCATION</small>
+                    <strong>Chennai, Tamil Nadu</strong>
+                </div>
+                <div class="info">
+                    <small>LANGUAGES</small>
+                    <strong>English · Tamil</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="skills" id="skills">
+    <div class="container">
+        <div class="section-label">02 — Skills</div>
+        <h2 class="section-title">Technical <span>toolkit.</span></h2>
+
+        <div class="skill-grid">
+            <div class="skill"><h3>Embedded Systems</h3><p>Embedded system development and integration</p></div>
+            <div class="skill"><h3>PCB Design</h3><p>Schematic and PCB layout using KiCad</p></div>
+            <div class="skill"><h3>AI Model Training</h3><p>AI model development and training</p></div>
+            <div class="skill"><h3>Computer Vision</h3><p>Vision-based detection and AI applications</p></div>
+            <div class="skill"><h3>UAV Development</h3><p>UAV hardware and embedded systems</p></div>
+            <div class="skill"><h3>Python Programming</h3><p>Python-based engineering and AI workflows</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="experience">
+    <div class="container">
+        <div class="section-label">03 — Experience</div>
+        <h2 class="section-title">Where I've <span>worked.</span></h2>
+
+        <div class="timeline">
+
+            <div class="experience">
+                <div class="date">APR 2026 — PRESENT</div>
+                <h3>Chief Operating Officer</h3>
+                <div class="company">RedSky Drones</div>
+                <ul>
+                    <li>Lead multidisciplinary teams across hardware, AI, and embedded systems.</li>
+                    <li>Oversee UAV project planning, execution, and technical operations.</li>
+                    <li>Coordinate research, product development, and startup growth initiatives.</li>
+                </ul>
+            </div>
+
+            <div class="experience">
+                <div class="date">JAN 2026 — MAR 2026</div>
+                <h3>HR Manager</h3>
+                <div class="company">RedSky Drones</div>
+                <ul>
+                    <li>Managed recruitment, onboarding, and team coordination.</li>
+                    <li>Organized interviews and improved internal communication.</li>
+                    <li>Supported startup operations and resource planning.</li>
+                </ul>
+            </div>
+
+            <div class="experience">
+                <div class="date">JUN 2025 — JAN 2026</div>
+                <h3>Hardware Engineer</h3>
+                <div class="company">RedSky Drones</div>
+                <ul>
+                    <li>Developed UAV hardware and integrated embedded electronic systems.</li>
+                    <li>Designed PCB schematics and layouts using KiCad.</li>
+                    <li>Performed hardware testing, debugging, and component validation.</li>
+                </ul>
+            </div>
+
+            <div class="experience">
+                <div class="date">JUN 2026 — JUL 2026</div>
+                <h3>EV Manufacturing Intern</h3>
+                <div class="company">Switch Mobility (Ashok Leyland)</div>
+                <ul>
+                    <li>Studied EV bus assembly and vehicle electrical systems.</li>
+                    <li>Observed battery integration and wiring harness installation.</li>
+                    <li>Developed and presented an AI-based ADAS prototype.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="container">
+        <div class="section-label">04 — Projects</div>
+        <h2 class="section-title">Things I've <span>built.</span></h2>
+
+        <div class="project-grid">
+            <article class="project">
+                <div class="project-number">01</div>
+                <h3>Ride Sentinel</h3>
+                <p>AI & Embedded school transportation safety system.</p>
+            </article>
+
+            <article class="project">
+                <div class="project-number">02</div>
+                <h3>DRDO UAV Project</h3>
+                <p>AI-assisted UAV research with PCB & embedded systems.</p>
+            </article>
+
+            <article class="project">
+                <div class="project-number">03</div>
+                <h3>ADAS for Electric Bus</h3>
+                <p>YOLO-based object detection for EV safety.</p>
+            </article>
+
+            <article class="project">
+                <div class="project-number">04</div>
+                <h3>Rescue Drone</h3>
+                <p>UAV for emergency response and disaster support.</p>
+            </article>
+
+            <article class="project">
+                <div class="project-number">05</div>
+                <h3>Surveillance Drone</h3>
+                <p>UAV for aerial monitoring and reconnaissance.</p>
+            </article>
+
+            <article class="project">
+                <div class="project-number">06</div>
+                <h3>UAV PCB Design</h3>
+                <p>Power Distribution Board designed using KiCad.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="section-label">05 — Contact</div>
+        <h2 class="section-title">Let's <span>connect.</span></h2>
+        <p class="contact-text">
+            Open to engineering projects, technical collaborations and new opportunities.
+        </p>
+
+        <div class="contact-links">
+            <a href="mailto:mathiyanburp@gmail.com">Email</a>
+            <a href="tel:+916379690875">+91 6379690875</a>
+            <a href="https://www.linkedin.com/in/mathiyanbu-r-p-83549b328/?isSelfProfile=true" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    © 2026 Mathiyanbu R P · Built with HTML, CSS & JavaScript
+</footer>
+
+<script>
+function toggleMenu(){
+    document.getElementById("navLinks").classList.toggle("active");
+}
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+    link.addEventListener("click",()=>{
+        document.getElementById("navLinks").classList.remove("active");
+    });
+});
+</script>
+
 </body>
 </html>
