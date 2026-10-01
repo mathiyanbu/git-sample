@@ -1,581 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Mathiyanbu R P — ECE Student, Embedded Systems, AI and UAV Systems">
-<title>Mathiyanbu R P | Portfolio</title>
-
-<style>
-:root{
-    --bg:#050505;
-    --bg2:#0b0b0b;
-    --card:#101010;
-    --line:#242424;
-    --text:#f5f5f5;
-    --muted:#999;
-    --accent:#b8ff3d;
-    --accent2:#83c91f;
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:Inter,Arial,Helvetica,sans-serif;
-    line-height:1.6;
-}
-a{color:inherit;text-decoration:none}
-.container{width:min(1150px,90%);margin:auto}
-
-/* NAV */
-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index:1000;
-    background:rgba(5,5,5,.82);
-    backdrop-filter:blur(16px);
-    border-bottom:1px solid rgba(255,255,255,.07);
-}
-.nav-inner{
-    height:74px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-.logo{
-    font-size:22px;
-    font-weight:800;
-    letter-spacing:2px;
-}
-.logo span{color:var(--accent)}
-.nav-links{
-    display:flex;
-    gap:28px;
-    list-style:none;
-}
-.nav-links a{
-    color:#aaa;
-    font-size:14px;
-    transition:.25s;
-}
-.nav-links a:hover{color:var(--accent)}
-.menu{display:none;color:var(--accent);font-size:25px;cursor:pointer}
-
-/* HERO */
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    padding:120px 0 80px;
-    position:relative;
-    overflow:hidden;
-}
-.hero:before{
-    content:"";
-    position:absolute;
-    width:500px;height:500px;
-    right:-180px;top:100px;
-    background:var(--accent);
-    filter:blur(180px);
-    opacity:.07;
-}
-.hero-grid{
-    display:grid;
-    grid-template-columns:1.35fr .65fr;
-    gap:70px;
-    align-items:center;
-}
-.kicker{
-    color:var(--accent);
-    font-size:13px;
-    letter-spacing:4px;
-    font-weight:700;
-    margin-bottom:20px;
-}
-h1{
-    font-size:clamp(52px,8vw,96px);
-    line-height:.95;
-    letter-spacing:-4px;
-    margin-bottom:25px;
-}
-.hero h1 span{color:var(--accent)}
-.hero-title{
-    font-size:clamp(18px,2vw,25px);
-    color:#c9c9c9;
-    margin-bottom:22px;
-}
-.hero-description{
-    max-width:680px;
-    color:var(--muted);
-    font-size:16px;
-}
-.hero-buttons{
-    display:flex;
-    gap:14px;
-    margin-top:35px;
-    flex-wrap:wrap;
-}
-.btn{
-    padding:13px 22px;
-    border:1px solid var(--line);
-    border-radius:5px;
-    font-size:14px;
-    font-weight:700;
-    transition:.25s;
-}
-.btn-primary{
-    background:var(--accent);
-    color:#050505;
-    border-color:var(--accent);
-}
-.btn:hover{transform:translateY(-3px)}
-.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
-
-.profile-box{
-    background:linear-gradient(145deg,#151515,#090909);
-    border:1px solid var(--line);
-    padding:25px;
-    border-radius:14px;
-    position:relative;
-}
-.profile-circle{
-    width:210px;height:210px;
-    margin:auto;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#111;
-    border:1px solid #333;
-    box-shadow:0 0 0 10px #0b0b0b,0 0 60px rgba(184,255,61,.12);
-    font-size:70px;
-    font-weight:900;
-    color:var(--accent);
-}
-.profile-caption{
-    text-align:center;
-    margin-top:25px;
-    color:#aaa;
-    font-size:13px;
-}
-
-/* SECTIONS */
-section{padding:110px 0}
-.section-label{
-    color:var(--accent);
-    letter-spacing:3px;
-    text-transform:uppercase;
-    font-size:12px;
-    font-weight:800;
-    margin-bottom:10px;
-}
-.section-title{
-    font-size:clamp(35px,5vw,58px);
-    letter-spacing:-2px;
-    margin-bottom:45px;
-}
-.section-title span{color:var(--accent)}
-.about-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:70px;
-}
-.about-text{color:#aaa;font-size:17px}
-.about-text p+p{margin-top:18px}
-.info-list{display:grid;gap:14px}
-.info{
-    padding:18px 20px;
-    border:1px solid var(--line);
-    background:var(--card);
-    border-radius:7px;
-}
-.info small{color:var(--accent);display:block;margin-bottom:4px}
-.info strong{font-size:15px}
-
-/* SKILLS */
-.skills{
-    background:#080808;
-    border-top:1px solid #151515;
-    border-bottom:1px solid #151515;
-}
-.skill-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-.skill{
-    padding:24px;
-    background:#0e0e0e;
-    border:1px solid var(--line);
-    transition:.3s;
-}
-.skill:hover{border-color:#4c6825;transform:translateY(-4px)}
-.skill h3{font-size:17px;margin-bottom:10px}
-.skill p{font-size:14px;color:#888}
-
-/* EXPERIENCE */
-.timeline{
-    position:relative;
-    max-width:900px;
-}
-.timeline:before{
-    content:"";
-    position:absolute;
-    left:8px;top:0;bottom:0;
-    width:1px;background:#303030;
-}
-.experience{
-    position:relative;
-    padding-left:45px;
-    margin-bottom:45px;
-}
-.experience:before{
-    content:"";
-    position:absolute;
-    left:2px;top:8px;
-    width:13px;height:13px;
-    border:2px solid var(--accent);
-    border-radius:50%;
-    background:var(--bg);
-}
-.date{
-    color:var(--accent);
-    font-size:12px;
-    letter-spacing:1px;
-    font-weight:700;
-}
-.experience h3{font-size:22px;margin:5px 0}
-.company{color:#ddd;font-weight:700}
-.experience ul{margin-top:12px;padding-left:18px;color:#888}
-.experience li{margin:5px 0}
-
-/* PROJECTS */
-.project-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
-}
-.project{
-    background:var(--card);
-    border:1px solid var(--line);
-    padding:30px;
-    min-height:220px;
-    transition:.3s;
-    position:relative;
-    overflow:hidden;
-}
-.project:after{
-    content:"";
-    position:absolute;
-    width:100px;height:100px;
-    right:-45px;bottom:-45px;
-    background:var(--accent);
-    filter:blur(60px);
-    opacity:0;
-    transition:.3s;
-}
-.project:hover{
-    transform:translateY(-5px);
-    border-color:#435c24;
-}
-.project:hover:after{opacity:.15}
-.project-number{color:var(--accent);font-size:12px;font-weight:800}
-.project h3{font-size:25px;margin:10px 0}
-.project p{color:#888;font-size:14px}
-
-/* CONTACT */
-.contact{
-    text-align:center;
-    background:#080808;
-    border-top:1px solid #151515;
-}
-.contact-text{color:#888;margin-bottom:30px}
-.contact-links{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    flex-wrap:wrap;
-}
-.contact-links a{
-    padding:12px 18px;
-    border:1px solid var(--line);
-    border-radius:5px;
-    color:#ccc;
-    font-size:14px;
-}
-.contact-links a:hover{border-color:var(--accent);color:var(--accent)}
-
-footer{
-    padding:25px;
-    text-align:center;
-    color:#555;
-    font-size:12px;
-    border-top:1px solid #151515;
-}
-
-/* MOBILE */
-@media(max-width:800px){
-    .nav-links{
-        display:none;
-        position:absolute;
-        top:74px;left:0;
-        width:100%;
-        background:#080808;
-        flex-direction:column;
-        padding:20px 5%;
-        border-bottom:1px solid var(--line);
-    }
-    .nav-links.active{display:flex}
-    .menu{display:block}
-    .hero-grid,.about-grid{grid-template-columns:1fr}
-    .hero{padding-top:130px}
-    h1{letter-spacing:-3px}
-    .profile-box{max-width:350px;margin:auto}
-    .skill-grid{grid-template-columns:1fr 1fr}
-    .project-grid{grid-template-columns:1fr}
-}
-@media(max-width:500px){
-    .skill-grid{grid-template-columns:1fr}
-    section{padding:80px 0}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mathiyanbu R P is an Electronics and Communication Engineering student working across embedded systems, AI, robotics, UAVs and PCB design.">
+  <meta name="theme-color" content="#07110f">
+  <title>Mathiyanbu R P | Electronics &amp; Embedded Systems</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
+  <canvas class="lab-canvas" aria-hidden="true"></canvas>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Mathiyanbu R P home">MATHIYANBU<span>.RP</span></a>
+      <div class="system-state"><span class="online-led" aria-hidden="true"></span>SYSTEM ONLINE</div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation"><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about"><span>01</span> ABOUT</a></li>
+        <li><a href="#skills"><span>02</span> SKILLS</a></li>
+        <li><a href="#experience"><span>03</span> EXPERIENCE</a></li>
+        <li><a href="#projects"><span>04</span> PROJECTS</a></li>
+        <li><a href="#contact"><span>05</span> CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<nav>
-    <div class="container nav-inner">
-        <a href="#home" class="logo">MATHI<span>.</span></a>
-        <div class="menu" onclick="toggleMenu()">☰</div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-</nav>
-
-<main>
-
-<section class="hero" id="home">
-    <div class="container hero-grid">
-        <div>
-            <div class="kicker">ECE STUDENT · BUILDER · TECH ENTHUSIAST</div>
-            <h1>MATHIYANBU <span>  R P</span></h1>
-            <div class="hero-title">Embedded Systems · AI · UAV Systems</div>
-            <p class="hero-description">
-                Electronics & Communication Engineering student with hands-on
-                experience across embedded systems, UAVs, AI, PCB design and
-                computer vision. Interested in aerospace, robotics, embedded
-                systems and defense technologies.
-            </p>
-            <div class="hero-buttons">
-                <a class="btn btn-primary" href="#projects">View Projects</a>
-                <a class="btn btn-secondary" href="#contact">Let's Connect</a>
-            </div>
+  <main id="main">
+    <section class="hero shell section-anchor" id="home" aria-labelledby="hero-title">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="eyebrow-line"></span> ELECTRONICS &amp; COMMUNICATION ENGINEERING</p>
+        <p class="hero-index">ENGINEERING PORTFOLIO <span> / 2026</span></p>
+        <h1 id="hero-title">Building the<br><span>electronics</span> behind<br>intelligent machines.</h1>
+        <p class="hero-role">ECE Student <i>·</i> Embedded Systems <i>·</i> AI <i>·</i> Robotics <i>·</i> UAV Systems</p>
+        <p class="hero-description">Electronics &amp; Communication Engineering student working across embedded systems, AI, UAVs, PCB design and computer vision — turning circuits and code into working systems.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">EXPLORE SYSTEMS <span aria-hidden="true">→</span></a>
+          <button class="button button-outline" type="button" disabled title="Add assets/Mathiyanbu_RP_Resume.pdf to enable this action">VIEW RESUME <span class="button-unavailable">PDF NEEDED</span></button>
         </div>
-
-        <div class="profile-box">
-            <div class="profile-circle">MR</div>
-            <p class="profile-caption">Electronics · Embedded · AI · UAV</p>
+        <div class="hero-stats" aria-label="Engineering focus areas">
+          <div class="stat-module"><span class="stat-number">01</span><strong>ECE</strong><small>ENGINEERING</small></div>
+          <div class="stat-module"><span class="stat-number">02</span><strong>AI</strong><small>VISION &amp; MODELS</small></div>
+          <div class="stat-module"><span class="stat-number">03</span><strong>UAV</strong><small>SYSTEMS</small></div>
+          <div class="stat-module"><span class="stat-number">04</span><strong>PCB</strong><small>KICAD</small></div>
         </div>
-    </div>
-</section>
+      </div>
 
-<section id="about">
-    <div class="container">
-        <div class="section-label">01 — About</div>
-        <h2 class="section-title">Building with <span>hardware & intelligence.</span></h2>
-
-        <div class="about-grid">
-            <div class="about-text">
-                <p>
-                    Passionate Electronics & Communication Engineering student
-                    with experience in Embedded Systems, UAVs, AI, PCB Design,
-                    and Computer Vision.
-                </p>
-                <p>
-                    I have startup experience in hardware engineering and
-                    technical leadership through RedSky Drones, with interests
-                    spanning aerospace, robotics, embedded systems and defense
-                    technologies.
-                </p>
-            </div>
-
-            <div class="info-list">
-                <div class="info">
-                    <small>EDUCATION</small>
-                    <strong>B.E. Electronics & Communication Engineering</strong>
-                    <div>Sri Sairam Engineering College · 2024–2028 · CGPA 8.59</div>
-                </div>
-                <div class="info">
-                    <small>LOCATION</small>
-                    <strong>Chennai, Tamil Nadu</strong>
-                </div>
-                <div class="info">
-                    <small>LANGUAGES</small>
-                    <strong>English · Tamil</strong>
-                </div>
-            </div>
+      <div class="board-wrap reveal" aria-label="Embedded systems board visualization">
+        <div class="board-frame-label"><span>FIG 01 / EMBEDDED CONTROL UNIT</span><span>REV. 2.6</span></div>
+        <div class="board">
+          <span class="board-corner corner-a"></span><span class="board-corner corner-b"></span><span class="board-corner corner-c"></span><span class="board-corner corner-d"></span>
+          <div class="board-trace trace-a"></div><div class="board-trace trace-b"></div><div class="board-trace trace-c"></div><div class="board-trace trace-d"></div><div class="board-trace trace-e"></div><div class="board-trace trace-f"></div>
+          <span class="trace-node node-a"></span><span class="trace-node node-b"></span><span class="trace-node node-c"></span><span class="trace-node node-d"></span>
+          <span class="pin-label pin-vcc">VCC <i></i></span><span class="pin-label pin-gnd">GND <i></i></span><span class="pin-label pin-uart">UART <i></i></span><span class="pin-label pin-i2c">I²C <i></i></span>
+          <div class="sensor sensor-one"><span class="sensor-led"></span><span>IMU<br><small>6-AXIS</small></span></div>
+          <div class="sensor sensor-two"><span class="sensor-led"></span><span>CAM<br><small>VISION</small></span></div>
+          <div class="sensor sensor-three"><span class="sensor-led"></span><span>GPS<br><small>GNSS</small></span></div>
+          <div class="chip"><div class="chip-pins"></div><span class="chip-overline">U1 / MCU</span><strong>STM32</strong><span class="chip-model">ARM CORTEX · CONTROL CORE</span><span class="chip-leds"><i></i><i></i><i></i></span></div>
+          <div class="terminal"><div class="terminal-title"><span class="terminal-leds"><i></i><i></i><i></i></span> SYS / BOOT LOG <span class="terminal-live">LIVE</span></div><div class="terminal-body"><p>[ SYSTEM INITIALIZED ]</p><p><b>&gt;</b> embedded_stack.load()</p><p><b>&gt;</b> ai_engine.connect()</p><p><b>&gt;</b> robotics.link() <em>OK</em></p><span class="terminal-cursor"></span></div></div>
+          <span class="board-silk silk-top">MRP / FLIGHT CTRL</span><span class="board-silk silk-bottom">3V3 <i>•</i> 5V <i>•</i> GND</span>
         </div>
-    </div>
-</section>
+        <div class="board-footer"><span><i class="footer-led"></i> CONTROLLER ACTIVE</span><span>CHENNAI, IN <b>13.08°N</b></span></div>
+      </div>
+      <span class="hero-coordinate coordinate-left">13°04' N<br>80°16' E</span>
+      <span class="hero-coordinate coordinate-right">SIGNAL PATH / 001</span>
+    </section>
 
-<section class="skills" id="skills">
-    <div class="container">
-        <div class="section-label">02 — Skills</div>
-        <h2 class="section-title">Technical <span>toolkit.</span></h2>
+    <div class="ticker" aria-label="Areas of interest"><div class="ticker-track"><span>EMBEDDED SYSTEMS</span><i>⊙</i><span>PCB DESIGN</span><i>⌁</i><span>COMPUTER VISION</span><i>⊙</i><span>UAV SYSTEMS</span><i>⌁</i><span>AI</span><i>⊙</i><span>ROBOTICS</span><i>⌁</i><span>MICROCONTROLLERS</span><i>⊙</i><span>ELECTRONICS</span><i>⌁</i><span>EMBEDDED SYSTEMS</span><i>⊙</i><span>PCB DESIGN</span><i>⌁</i><span>COMPUTER VISION</span><i>⊙</i><span>UAV SYSTEMS</span><i>⌁</i><span>AI</span><i>⊙</i><span>ROBOTICS</span><i>⌁</i><span>MICROCONTROLLERS</span><i>⊙</i><span>ELECTRONICS</span><i>⌁</i></div></div>
 
-        <div class="skill-grid">
-            <div class="skill"><h3>Embedded Systems</h3><p>Embedded system development and integration</p></div>
-            <div class="skill"><h3>PCB Design</h3><p>Schematic and PCB layout using KiCad</p></div>
-            <div class="skill"><h3>AI Model Training</h3><p>AI model development and training</p></div>
-            <div class="skill"><h3>Computer Vision</h3><p>Vision-based detection and AI applications</p></div>
-            <div class="skill"><h3>UAV Development</h3><p>UAV hardware and embedded systems</p></div>
-            <div class="skill"><h3>Python Programming</h3><p>Python-based engineering and AI workflows</p></div>
-        </div>
-    </div>
-</section>
+    <section class="section shell section-anchor" id="about" aria-labelledby="about-title">
+      <div class="section-head reveal"><p class="section-code">01 / SUBJECT PROFILE</p><h2 id="about-title">Electronics at <span>the core.</span></h2><p class="section-deck">I like building systems where hardware, software and intelligence meet.</p></div>
+      <div class="about-layout">
+        <div class="about-copy reveal"><p>Passionate Electronics &amp; Communication Engineering student with experience in Embedded Systems, UAVs, AI, PCB Design, and Computer Vision.</p><p>I have startup experience in hardware engineering and technical leadership through RedSky Drones, with interests spanning aerospace, robotics, embedded systems and defense technologies.</p><div class="about-coordinate"><span class="crosshair">+</span><span>BASED IN<br><strong>CHENNAI, TAMIL NADU</strong></span></div></div>
+        <div class="spec-panel reveal"><div class="panel-heading"><span>ENGINEERING SPECIFICATION</span><span>PROFILE / 001</span></div><div class="spec-row"><span class="spec-label">EDUCATION</span><div><strong>B.E. Electronics &amp; Communication Engineering</strong><p>Sri Sairam Engineering College</p><small>2024–2028</small></div></div><div class="spec-row"><span class="spec-label">ACADEMIC</span><div class="spec-values"><p><span>CGPA</span><strong>8.59</strong></p><p><span>HSC</span><strong>82.80%</strong></p><p><span>SSLC</span><strong>90.20%</strong></p></div></div><div class="spec-row"><span class="spec-label">LOCATION</span><div><strong>Chennai, Tamil Nadu</strong></div></div><div class="spec-row"><span class="spec-label">LANGUAGES</span><div><strong>English <i>·</i> Tamil</strong></div></div></div>
+      </div>
+    </section>
 
-<section id="experience">
-    <div class="container">
-        <div class="section-label">03 — Experience</div>
-        <h2 class="section-title">Where I've <span>worked.</span></h2>
+    <section class="section skills-section section-anchor" id="skills" aria-labelledby="skills-title"><div class="shell">
+      <div class="section-head section-head-row reveal"><div><p class="section-code">02 / SYSTEM CAPABILITIES</p><h2 id="skills-title">Engineering <span>stack.</span></h2></div><p class="section-deck">Hardware and intelligence,<br>designed to work together.</p></div>
+      <div class="skills-layout"><div class="skill-grid">
+        <article class="skill-card reveal"><div class="skill-top"><span class="skill-icon">⌁</span><span>SYS.01</span></div><h3>EMBEDDED SYSTEMS</h3><p>Firmware and sensor systems brought together at the edge.</p><ul><li>STM32</li><li>ESP32</li><li>Raspberry Pi</li><li>Sensors</li><li>Embedded Integration</li></ul><span class="card-trace"></span></article>
+        <article class="skill-card reveal"><div class="skill-top"><span class="skill-icon">▦</span><span>SYS.02</span></div><h3>PCB DESIGN</h3><p>From schematic capture to practical board validation.</p><ul><li>KiCad</li><li>Schematic Design</li><li>PCB Layout</li><li>Hardware Debugging</li><li>Testing</li></ul><span class="card-trace"></span></article>
+        <article class="skill-card reveal"><div class="skill-top"><span class="skill-icon">◎</span><span>SYS.03</span></div><h3>AI &amp; COMPUTER VISION</h3><p>Vision pipelines and trained models for real-world systems.</p><ul><li>Python</li><li>YOLO</li><li>AI Model Training</li><li>Computer Vision</li></ul><span class="card-trace"></span></article>
+        <article class="skill-card reveal"><div class="skill-top"><span class="skill-icon">✣</span><span>SYS.04</span></div><h3>UAV DEVELOPMENT</h3><p>Electronics and embedded integration for aerial platforms.</p><ul><li>UAV Electronics</li><li>Power Systems</li><li>Embedded Integration</li><li>Aerial Platforms</li></ul><span class="card-trace"></span></article>
+        <article class="skill-card reveal"><div class="skill-top"><span class="skill-icon">&lt;/&gt;</span><span>SYS.05</span></div><h3>PROGRAMMING</h3><p>Software foundations for electronics and digital design.</p><ul><li>Python</li><li>C</li><li>C++</li><li>Verilog</li></ul><span class="card-trace"></span></article>
+        <article class="skill-card reveal"><div class="skill-top"><span class="skill-icon">⎔</span><span>SYS.06</span></div><h3>SYSTEM INTEGRATION</h3><p>Connecting hardware, firmware, AI and test workflows.</p><ul><li>Hardware</li><li>Firmware</li><li>AI</li><li>Testing</li><li>System Architecture</li></ul><span class="card-trace"></span></article>
+      </div>
+      <div class="orbit-panel reveal" aria-label="ECE connecting PCB, AI, UAV and microcontroller disciplines"><div class="orbit-label">INTERDISCIPLINARY SYSTEMS / ECE</div><div class="orbit-visual"><span class="orbit-ring orbit-ring-outer"></span><span class="orbit-ring orbit-ring-inner"></span><span class="orbit-center">ECE</span><span class="orbit-node orbit-pcb">PCB</span><span class="orbit-node orbit-ai">AI</span><span class="orbit-node orbit-uav">UAV</span><span class="orbit-node orbit-mcu">MCU</span></div><div class="orbit-legend"><span><i></i> HARDWARE</span><span><i></i> INTELLIGENCE</span><span><i></i> CONTROL</span></div></div></div>
+    </div></section>
 
-        <div class="timeline">
+    <section class="section experience-section section-anchor" id="experience" aria-labelledby="experience-title"><div class="shell experience-layout">
+      <div class="section-head reveal"><p class="section-code">03 / FIELD EXPERIENCE</p><h2 id="experience-title">Learning through <span>systems.</span></h2><p class="section-deck">Leadership, hardware development and manufacturing exposure.</p><div class="timeline-key"><i></i> SIGNAL PATH / EXPERIENCE LOG</div></div>
+      <div class="timeline">
+        <article class="experience-entry reveal"><div class="experience-date">APR 2026 <span>— PRESENT</span></div><div class="experience-node"></div><div class="experience-body"><p class="experience-type">TECHNICAL LEADERSHIP</p><h3>Chief Operating Officer</h3><p class="experience-org">RedSky Drones</p><ul><li>Lead multidisciplinary teams across hardware, AI and embedded systems.</li><li>Oversee UAV project planning, execution and technical operations.</li><li>Coordinate research, product development and startup growth initiatives.</li></ul></div></article>
+        <article class="experience-entry reveal"><div class="experience-date">JAN 2026 <span>— MAR 2026</span></div><div class="experience-node"></div><div class="experience-body"><p class="experience-type">TEAM OPERATIONS</p><h3>HR Manager</h3><p class="experience-org">RedSky Drones</p><ul><li>Managed recruitment, onboarding and team coordination.</li><li>Organized interviews and improved internal communication.</li><li>Supported startup operations and resource planning.</li></ul></div></article>
+        <article class="experience-entry reveal"><div class="experience-date">JUN 2025 <span>— JAN 2026</span></div><div class="experience-node"></div><div class="experience-body"><p class="experience-type">HARDWARE ENGINEERING</p><h3>Hardware Engineer</h3><p class="experience-org">RedSky Drones</p><ul><li>Developed UAV hardware and integrated embedded electronic systems.</li><li>Designed PCB schematics and layouts using KiCad.</li><li>Performed hardware testing, debugging and component validation.</li></ul></div></article>
+        <article class="experience-entry reveal"><div class="experience-date">JUN 2026 <span>— JUL 2026</span></div><div class="experience-node"></div><div class="experience-body"><p class="experience-type">EV MANUFACTURING</p><h3>EV Manufacturing Intern</h3><p class="experience-org">Switch Mobility <span>(Ashok Leyland)</span></p><ul><li>Studied EV bus assembly and vehicle electrical systems.</li><li>Observed battery integration and wiring harness installation.</li><li>Developed and presented an AI-based ADAS prototype.</li></ul></div></article>
+      </div>
+    </div></section>
 
-            <div class="experience">
-                <div class="date">APR 2026 — PRESENT</div>
-                <h3>Chief Operating Officer</h3>
-                <div class="company">RedSky Drones</div>
-                <ul>
-                    <li>Lead multidisciplinary teams across hardware, AI, and embedded systems.</li>
-                    <li>Oversee UAV project planning, execution, and technical operations.</li>
-                    <li>Coordinate research, product development, and startup growth initiatives.</li>
-                </ul>
-            </div>
+    <section class="section projects-section section-anchor" id="projects" aria-labelledby="projects-title"><div class="shell">
+      <div class="section-head section-head-row reveal"><div><p class="section-code">04 / PROTOTYPE ARCHIVE</p><h2 id="projects-title">Systems I've <span>engineered.</span></h2></div><p class="section-deck">Selected concepts across aerial systems,<br>embedded control and computer vision.</p></div>
+      <div class="project-grid">
+        <article class="project-card reveal" data-project="0"><div class="project-visual visual-bus" aria-hidden="true"><div class="visual-label">VEHICLE TELEMETRY <span>● LIVE</span></div><div class="bus-shape"><i></i><i></i><i></i><b>RS</b></div><span class="sensor-dot sensor-dot-a"></span><span class="sensor-dot sensor-dot-b"></span><span class="signal-path"></span><span class="device-chip">STUDENT ID<br><b>CONNECTED</b></span><span class="visual-coordinate">GPS / ROUTE 04</span></div><div class="project-content"><div class="project-meta"><span>PROJECT 01</span><span>AI + EMBEDDED</span></div><h3>Ride Sentinel</h3><p>AI &amp; Embedded school transportation safety system.</p><div class="project-tags"><span>ESP32</span><span>IoT</span><span>AI</span></div><button class="open-project" type="button" aria-label="Open Ride Sentinel project details">OPEN SYSTEM <span>↗</span></button></div></article>
+        <article class="project-card reveal" data-project="1"><div class="project-visual visual-drone" aria-hidden="true"><div class="visual-label">FLIGHT CONTROL <span>● LINKED</span></div><div class="drone-graphic"><i class="drone-arm"></i><i class="drone-arm"></i><i class="rotor rotor-a"></i><i class="rotor rotor-b"></i><i class="rotor rotor-c"></i><i class="rotor rotor-d"></i><b>FC</b></div><span class="drone-track track-a"></span><span class="drone-track track-b"></span><span class="visual-coordinate">UAV / R&amp;D</span></div><div class="project-content"><div class="project-meta"><span>PROJECT 02</span><span>UAV / R&amp;D</span></div><h3>DRDO UAV Project</h3><p>AI-assisted UAV research with PCB and embedded systems.</p><div class="project-tags"><span>UAV</span><span>PCB</span><span>Embedded</span></div><button class="open-project" type="button" aria-label="Open DRDO UAV Project details">OPEN SYSTEM <span>↗</span></button></div></article>
+        <article class="project-card reveal" data-project="2"><div class="project-visual visual-adas" aria-hidden="true"><div class="visual-label">VISION PIPELINE <span>● DETECT</span></div><div class="camera-road"><span class="scan-line"></span><span class="detect-box detect-car"><i>OBJECT / 01</i></span><span class="detect-box detect-person"><i>OBJECT / 02</i></span><span class="road-car"></span></div><span class="visual-coordinate">YOLO / ADAS</span></div><div class="project-content"><div class="project-meta"><span>PROJECT 03</span><span>COMPUTER VISION</span></div><h3>ADAS for Electric Bus</h3><p>YOLO-based object detection prototype for EV safety.</p><div class="project-tags"><span>YOLO</span><span>EV</span><span>ADAS</span></div><button class="open-project" type="button" aria-label="Open ADAS for Electric Bus project details">OPEN SYSTEM <span>↗</span></button></div></article>
+        <article class="project-card reveal" data-project="3"><div class="project-visual visual-rescue" aria-hidden="true"><div class="visual-label">SEARCH GRID <span>● SCANNING</span></div><div class="radar-display"><i class="radar-sweep"></i><b class="radar-target target-a"></b><b class="radar-target target-b"></b><b class="radar-target target-c"></b><span class="radar-cross">+</span></div><span class="visual-coordinate">RESCUE / SECTOR 07</span></div><div class="project-content"><div class="project-meta"><span>PROJECT 04</span><span>AERIAL SYSTEM</span></div><h3>Rescue Drone</h3><p>UAV concept for emergency response and disaster support.</p><div class="project-tags"><span>UAV</span><span>RESCUE</span></div><button class="open-project" type="button" aria-label="Open Rescue Drone project details">OPEN SYSTEM <span>↗</span></button></div></article>
+        <article class="project-card reveal" data-project="4"><div class="project-visual visual-surveillance" aria-hidden="true"><div class="visual-label">AERIAL MONITOR <span>● RECORD</span></div><div class="monitor-grid"><span class="monitor-reticle"></span><span class="monitor-sweep"></span><i class="monitor-target"></i><span class="monitor-cross cross-h"></span><span class="monitor-cross cross-v"></span></div><span class="visual-coordinate">MONITOR / 03</span></div><div class="project-content"><div class="project-meta"><span>PROJECT 05</span><span>SURVEILLANCE</span></div><h3>Surveillance Drone</h3><p>UAV for aerial monitoring and reconnaissance.</p><div class="project-tags"><span>UAV</span><span>AERIAL MONITORING</span></div><button class="open-project" type="button" aria-label="Open Surveillance Drone project details">OPEN SYSTEM <span>↗</span></button></div></article>
+        <article class="project-card reveal" data-project="5"><div class="project-visual visual-pcb" aria-hidden="true"><div class="visual-label">POWER DISTRIBUTION <span>● BOARD VIEW</span></div><div class="pcb-art"><span class="pcb-chip">PDB<br><small>U1</small></span><span class="pcb-trace pcb-trace-a"></span><span class="pcb-trace pcb-trace-b"></span><span class="pcb-trace pcb-trace-c"></span><span class="pcb-via via-a"></span><span class="pcb-via via-b"></span><span class="pcb-via via-c"></span><span class="pcb-part part-a"></span><span class="pcb-part part-b"></span></div><span class="visual-coordinate">KiCad / PCB</span></div><div class="project-content"><div class="project-meta"><span>PROJECT 06</span><span>POWER ELECTRONICS</span></div><h3>UAV PCB Design</h3><p>Power Distribution Board designed using KiCad.</p><div class="project-tags"><span>PCB</span><span>KICAD</span><span>POWER</span></div><button class="open-project" type="button" aria-label="Open UAV PCB Design project details">OPEN SYSTEM <span>↗</span></button></div></article>
+      </div>
+    </div></section>
 
-            <div class="experience">
-                <div class="date">JAN 2026 — MAR 2026</div>
-                <h3>HR Manager</h3>
-                <div class="company">RedSky Drones</div>
-                <ul>
-                    <li>Managed recruitment, onboarding, and team coordination.</li>
-                    <li>Organized interviews and improved internal communication.</li>
-                    <li>Supported startup operations and resource planning.</li>
-                </ul>
-            </div>
+    <section class="contact-section section-anchor" id="contact" aria-labelledby="contact-title"><div class="shell contact-layout reveal"><div class="contact-copy"><p class="section-code">05 / OPEN CHANNEL</p><h2 id="contact-title">Let's build<br>something <span>real.</span></h2><p>For engineering projects, technical collaborations and opportunities.</p><div class="contact-status"><i></i> AVAILABLE FOR ENGINEERING COLLABORATIONS</div></div><div class="contact-modules"><a class="contact-module" href="mailto:mathiyanburp@gmail.com"><span class="module-icon">@</span><span class="module-copy"><small>EMAIL</small><strong>mathiyanburp@gmail.com</strong></span><span class="module-arrow">↗</span></a><a class="contact-module" href="tel:+916379690875"><span class="module-icon">⌕</span><span class="module-copy"><small>PHONE</small><strong>+91 6379690875</strong></span><span class="module-arrow">↗</span></a><a class="contact-module" href="https://www.linkedin.com/in/mathiyanb-u-r-p-83549b328/" target="_blank" rel="noreferrer"><span class="module-icon">in</span><span class="module-copy"><small>LINKEDIN</small><strong>Connect on LinkedIn</strong></span><span class="module-arrow">↗</span></a><div class="contact-module module-disabled" aria-label="Resume PDF unavailable"><span class="module-icon">PDF</span><span class="module-copy"><small>RESUME</small><strong>Resume PDF not provided</strong></span><span class="module-arrow">—</span></div></div></div><div class="contact-bottom shell"><span>TX: MATHIYANBURP@GMAIL.COM</span><span>RX: AWAITING COLLABORATION <i class="terminal-cursor"></i></span></div></section>
+  </main>
 
-            <div class="experience">
-                <div class="date">JUN 2025 — JAN 2026</div>
-                <h3>Hardware Engineer</h3>
-                <div class="company">RedSky Drones</div>
-                <ul>
-                    <li>Developed UAV hardware and integrated embedded electronic systems.</li>
-                    <li>Designed PCB schematics and layouts using KiCad.</li>
-                    <li>Performed hardware testing, debugging, and component validation.</li>
-                </ul>
-            </div>
+  <footer class="footer"><div class="shell footer-inner"><a class="brand" href="#home">MATHIYANBU<span>.RP</span></a><p>© 2026 MATHIYANBU R P</p><p>ENGINEERED WITH HTML / CSS / JAVASCRIPT <i>•</i> CHENNAI, INDIA</p></div></footer>
 
-            <div class="experience">
-                <div class="date">JUN 2026 — JUL 2026</div>
-                <h3>EV Manufacturing Intern</h3>
-                <div class="company">Switch Mobility (Ashok Leyland)</div>
-                <ul>
-                    <li>Studied EV bus assembly and vehicle electrical systems.</li>
-                    <li>Observed battery integration and wiring harness installation.</li>
-                    <li>Developed and presented an AI-based ADAS prototype.</li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section id="projects">
-    <div class="container">
-        <div class="section-label">04 — Projects</div>
-        <h2 class="section-title">Things I've <span>built.</span></h2>
-
-        <div class="project-grid">
-            <article class="project">
-                <div class="project-number">01</div>
-                <h3>Ride Sentinel</h3>
-                <p>AI & Embedded school transportation safety system.</p>
-            </article>
-
-            <article class="project">
-                <div class="project-number">02</div>
-                <h3>DRDO UAV Project</h3>
-                <p>AI-assisted UAV research with PCB & embedded systems.</p>
-            </article>
-
-            <article class="project">
-                <div class="project-number">03</div>
-                <h3>ADAS for Electric Bus</h3>
-                <p>YOLO-based object detection for EV safety.</p>
-            </article>
-
-            <article class="project">
-                <div class="project-number">04</div>
-                <h3>Rescue Drone</h3>
-                <p>UAV for emergency response and disaster support.</p>
-            </article>
-
-            <article class="project">
-                <div class="project-number">05</div>
-                <h3>Surveillance Drone</h3>
-                <p>UAV for aerial monitoring and reconnaissance.</p>
-            </article>
-
-            <article class="project">
-                <div class="project-number">06</div>
-                <h3>UAV PCB Design</h3>
-                <p>Power Distribution Board designed using KiCad.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<section class="contact" id="contact">
-    <div class="container">
-        <div class="section-label">05 — Contact</div>
-        <h2 class="section-title">Let's <span>connect.</span></h2>
-        <p class="contact-text">
-            Open to engineering projects, technical collaborations and new opportunities.
-        </p>
-
-        <div class="contact-links">
-            <a href="mailto:mathiyanburp@gmail.com">Email</a>
-            <a href="tel:+916379690875">+91 6379690875</a>
-            <a href="https://www.linkedin.com/in/mathiyanbu-r-p-83549b328/?isSelfProfile=true" target="_blank">LinkedIn</a>
-        </div>
-    </div>
-</section>
-
-</main>
-
-<footer>
-    © 2026 Mathiyanbu R P · Built with HTML, CSS & JavaScript
-</footer>
-
-<script>
-function toggleMenu(){
-    document.getElementById("navLinks").classList.toggle("active");
-}
-
-document.querySelectorAll(".nav-links a").forEach(link=>{
-    link.addEventListener("click",()=>{
-        document.getElementById("navLinks").classList.remove("active");
-    });
-});
-</script>
-
+  <dialog class="project-dialog" aria-labelledby="dialog-title"><form method="dialog"><button class="dialog-close" aria-label="Close project details" autofocus>×</button></form><div class="dialog-header"><span>ENGINEERING PROJECT / DETAIL VIEW</span><span class="dialog-status"><i></i> ARCHIVE</span></div><h2 id="dialog-title"></h2><p class="dialog-description"></p><div class="dialog-tech"><span>TECHNOLOGIES</span><p></p></div><div class="dialog-specs"><div><span>PROBLEM</span><p></p></div><div><span>SOLUTION</span><p></p></div><div><span>MY ROLE</span><p></p></div><div><span>SYSTEM ARCHITECTURE</span><p></p></div><div><span>FUTURE IMPROVEMENTS</span><p></p></div></div></dialog>
 </body>
 </html>
